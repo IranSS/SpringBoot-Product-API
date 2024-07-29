@@ -1,6 +1,6 @@
 # SpringBootProductAPI
 
-Este projeto é uma API REST Full desenvolvida em Java 17 utilizando o framework Spring na versão 3.3.1. O objetivo deste projeto é fornecer uma estrutura robusta para operações CRUD (Create, Read, Update, Delete) com um banco de dados PostgreSQL.
+Este projeto é uma API RestFul desenvolvida em Java 17 utilizando o framework Spring na versão 3.3.1. O objetivo deste projeto é fornecer uma estrutura robusta para operações CRUD (Create, Read, Update, Delete) com um banco de dados PostgreSQL.
 
 ## Tecnologias Utilizadas
 
@@ -11,6 +11,7 @@ Este projeto é uma API REST Full desenvolvida em Java 17 utilizando o framework
 - **Spring Boot Starter Data JPA**: Starter do Spring Boot para integração com JPA, facilitando o acesso a dados com repositórios Spring Data.
 - **Spring Boot Starter Validation**: Starter do Spring Boot para validação de dados.
 - **Spring Boot Starter HATEOAS**: Starter do Spring Boot para implementar HATEOAS (Hypermedia as the Engine of Application State).
+- **Spring Security**: Implementado para fornecer segurança básica à API.
 
 ## Funcionalidades
 
@@ -24,7 +25,7 @@ Este projeto é uma API REST Full desenvolvida em Java 17 utilizando o framework
 - **SpringbootApplication**: Script principal para iniciar o projeto.
 - **Controllers**: Pasta que contém os controllers da aplicação.
     - **ProductController**: Script onde se encontram as operações CRUD, baseadas nos mapeamentos Post, GetOne, GetAll, Put, e Delete.
-
+- **WebSecurityConfig**: Configuração de segurança que desativa CSRF e exige autenticação para todas as requisições.
 ## Como Executar
 
 1. **Pré-requisitos**:
