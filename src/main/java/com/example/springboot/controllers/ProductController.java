@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class ProductController {
     @Autowired
     ProductRepository produtcRepository;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/products")
     public ResponseEntity<ProductModel> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto){
         var productModel = new ProductModel();
@@ -30,6 +32,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(produtcRepository.save(productModel));
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/products")
     public ResponseEntity<List<ProductModel>> gettAllProducts(){
         List<ProductModel> productsList = produtcRepository.findAll();
@@ -42,6 +45,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productsList);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/products/{id}")
     public ResponseEntity<Object> getOneProduct(@PathVariable(value="id") UUID id){
         Optional<ProductModel> product0 = produtcRepository.findById(id);
@@ -52,6 +56,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(product0.get());
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/products/{id}")
     public ResponseEntity<Object> updateProduct(@PathVariable(value="id") UUID id, @RequestBody @Valid ProductRecordDto productRecordDto){
         Optional<ProductModel> product0 = produtcRepository.findById(id);
@@ -63,6 +68,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(produtcRepository.save(productModel));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/products/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
         Optional<ProductModel> product0 = produtcRepository.findById(id);

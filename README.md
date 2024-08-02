@@ -11,7 +11,7 @@ Este projeto é uma API RestFul desenvolvida em Java 17 utilizando o framework S
 - **Spring Boot Starter Data JPA**: Starter do Spring Boot para integração com JPA, facilitando o acesso a dados com repositórios Spring Data.
 - **Spring Boot Starter Validation**: Starter do Spring Boot para validação de dados.
 - **Spring Boot Starter HATEOAS**: Starter do Spring Boot para implementar HATEOAS (Hypermedia as the Engine of Application State).
-- **Spring Security**: Implementado para fornecer segurança básica à API.
+- **Spring Security 6.3.1**: Implementado para fornecer segurança básica à API.
 
 ## Funcionalidades
 
@@ -46,7 +46,7 @@ Este projeto é uma API RestFul desenvolvida em Java 17 utilizando o framework S
    - Atualize as configurações no arquivo `application.properties` com as credenciais do seu banco de dados.
 
 4. **Adicionar Usuários**:
-   - Atualmente, os usuários precisam ser adicionados diretamente no banco de dados PostgreSQL, pois a criação de usuários por meio da API ainda será implementada.
+   - A criação de usuários e atribuição de roles (ADMIN e USER) deve ser feita diretamente no banco de dados até que a funcionalidade de criação pela API seja implementada.
 
 5. **Executar a Aplicação**:
     ```bash
