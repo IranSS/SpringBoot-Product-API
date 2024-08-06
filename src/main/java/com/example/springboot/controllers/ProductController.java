@@ -19,13 +19,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
     ProductRepository produtcRepository;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/products")
+    @PostMapping
     public ResponseEntity<ProductModel> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto){
         var productModel = new ProductModel();
         BeanUtils.copyProperties(productRecordDto, productModel);
@@ -33,7 +34,7 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping("/products")
+    @GetMapping
     public ResponseEntity<List<ProductModel>> gettAllProducts(){
         List<ProductModel> productsList = produtcRepository.findAll();
         if(!productsList.isEmpty()){
@@ -46,7 +47,7 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getOneProduct(@PathVariable(value="id") UUID id){
         Optional<ProductModel> product0 = produtcRepository.findById(id);
         if(product0.isEmpty()){
@@ -57,7 +58,7 @@ public class ProductController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PutMapping("/products/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Object> updateProduct(@PathVariable(value="id") UUID id, @RequestBody @Valid ProductRecordDto productRecordDto){
         Optional<ProductModel> product0 = produtcRepository.findById(id);
         if(product0.isEmpty()){
@@ -69,7 +70,7 @@ public class ProductController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
         Optional<ProductModel> product0 = produtcRepository.findById(id);
         if(product0.isEmpty()){
