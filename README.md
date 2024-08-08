@@ -1,11 +1,11 @@
 # SpringBootProductAPI
 
-Este projeto é uma API RestFul desenvolvida em Java 17 utilizando o framework Spring na versão 3.3.1. O objetivo deste projeto é fornecer uma estrutura robusta para operações CRUD (Create, Read, Update, Delete) com um banco de dados PostgreSQL.
+Este projeto é uma API RestFul desenvolvida em Java 17 utilizando o framework Spring na versão 3.3.2. O objetivo deste projeto é fornecer uma estrutura robusta para operações CRUD (Create, Read, Update, Delete) com um banco de dados PostgreSQL.
 
 ## Tecnologias Utilizadas
 
 - **Java 17**: Linguagem de programação utilizada.
-- **Spring Framework 3.3.1**: Framework principal para desenvolvimento da aplicação.
+- **Spring Framework 3.3.2**: Framework principal para desenvolvimento da aplicação.
 - **PostgreSQL**: Banco de dados relacional utilizado para armazenar os dados.
 - **Spring Boot Starter Web**: Starter do Spring Boot para construção de aplicações web, incluindo RESTful.
 - **Spring Boot Starter Data JPA**: Starter do Spring Boot para integração com JPA, facilitando o acesso a dados com repositórios Spring Data.
