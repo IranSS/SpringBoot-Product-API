@@ -35,7 +35,7 @@ public class ProductController {
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
-    public ResponseEntity<List<ProductModel>> gettAllProducts(){
+    public ResponseEntity<List<ProductModel>> getAllProducts(){
         List<ProductModel> productsList = produtcRepository.findAll();
         if(!productsList.isEmpty()){
             for(ProductModel product : productsList){
@@ -53,7 +53,7 @@ public class ProductController {
         if(product0.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
         }
-        product0.get().add(linkTo(methodOn(ProductController.class).gettAllProducts()).withRel("Products List"));
+        product0.get().add(linkTo(methodOn(ProductController.class).getAllProducts()).withRel("Products List"));
         return ResponseEntity.status(HttpStatus.OK).body(product0.get());
     }
 
