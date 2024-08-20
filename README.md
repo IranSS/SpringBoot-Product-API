@@ -24,8 +24,15 @@ Este projeto é uma API RestFul desenvolvida em Java 17 utilizando o framework S
 ## Estrutura do Projeto
 
 - **SpringbootApplication**: Script principal para iniciar o projeto.
-- **Controllers**: Pasta que contém os controllers da aplicação.
-   - **ProductController**: Script onde se encontram as operações CRUD, baseadas nos mapeamentos Post, GetOne, GetAll, Put, e Delete.
+- **controllers**: Pasta que contém os controllers da aplicação.
+   - **ProductController**: Script onde se encontram as operações CRUD, baseadas nos seguintes mapeamentos:
+      - **POST /products**: Salva um novo produto. Acesso restrito a usuários com o papel `ROLE_ADMIN`.
+      - **GET /products**: Retorna a lista de todos os produtos, com links para detalhes de cada produto. Acesso permitido para `ROLE_ADMIN` e `ROLE_USER`.
+      - **GET /products/{id}**: Retorna os detalhes de um produto específico pelo seu ID. Acesso permitido para `ROLE_ADMIN` e `ROLE_USER`.
+      - **PUT /products/{id}**: Atualiza as informações de um produto existente. Acesso restrito a usuários com o papel `ROLE_ADMIN`.
+      - **DELETE /products/{id}**: Exclui um produto pelo seu ID. Acesso restrito a usuários com o papel `ROLE_ADMIN`.
+   - **UserController**: Script responsável por gerenciar usuários, com o seguinte endpoint:
+      - **GET /user/infousers**: Retorna a lista de todos os usuários cadastrados. Acesso restrito a usuários com o papel `ROLE_ADMIN`.
 - **WebSecurityConfig**: Configuração de segurança que desativa CSRF e exige autenticação para todas as requisições.
 - **UserModel**: Entidade que representa a tabela de usuários no banco de dados, implementando a interface UserDetails para integração com o Spring Security.
 
@@ -38,7 +45,7 @@ Este projeto é uma API RestFul desenvolvida em Java 17 utilizando o framework S
 
 2. **Clonar o Repositório**:
     ```bash
-    git clone https://github.com/seu-usuario/nome-do-projeto.git
+    git clone https://github.com/IranSS/SpringBoot-Product-API.git
     ```
 
 3. **Configurar o Banco de Dados**:
@@ -57,5 +64,5 @@ Este projeto é uma API RestFul desenvolvida em Java 17 utilizando o framework S
    A aplicação estará disponível em `http://localhost:8080`.
 
 ## Atualizações Futuras
-- Inclusão de novos controles.
+
 - Outras novidades serão adicionadas conforme o desenvolvimento avança.
