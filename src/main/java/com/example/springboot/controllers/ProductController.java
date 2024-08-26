@@ -2,6 +2,7 @@ package com.example.springboot.controllers;
 
 import com.example.springboot.models.ProductModel;
 import com.example.springboot.repositories.ProductRepository;
+import com.example.springboot.service.ProductService;
 import dtos.ProductRecordDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -25,6 +26,9 @@ public class ProductController {
     @Autowired
     ProductRepository produtcRepository;
 
+    @Autowired
+    ProductService productService;
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<ProductModel> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto){
@@ -37,12 +41,8 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductModel>> getAllProducts(){
         List<ProductModel> productsList = produtcRepository.findAll();
-        if(!productsList.isEmpty()){
-            for(ProductModel product : productsList){
-                UUID id = product.getIdProduct();
-                product.add(linkTo(methodOn(ProductController.class).getOneProduct(id)).withSelfRel());
-            }
-        }
+        productService.adicionarLink(productsList);
+
         return ResponseEntity.status(HttpStatus.OK).body(productsList);
     }
 
@@ -53,6 +53,7 @@ public class ProductController {
         if(product0.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
         }
+
         product0.get().add(linkTo(methodOn(ProductController.class).getAllProducts()).withRel("Products List"));
         return ResponseEntity.status(HttpStatus.OK).body(product0.get());
     }
